@@ -11,5 +11,9 @@ return {
 		"ms-jpq/chadtree",
 		branch = "chad",
 		build = "python3 -m chadtree deps"
+	},
+	{
+		"jake-stewart/multicursor.nvim",
+		branch = "1.0",
 	}
 }

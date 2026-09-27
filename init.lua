@@ -1,4 +1,5 @@
 require("config.lazy")
+require("config.keymap")
 
 -- nvim-tree
 -- disable netrw at the very start of your init.lua
@@ -12,7 +13,7 @@ vim.lsp.enable("basedpyright")
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
 -- empty setup using defaults
-require("nvim-tree").setup()
+--require("nvim-tree").setup()
 
 -- vscode
 vim.o.background = 'dark'
@@ -59,3 +60,18 @@ vim.cmd.colorscheme "vscode"
 require('lualine').setup {
 	extensions = {"nvim-tree", "chadtree"}
 }
+
+-- Set tab size
+vim.cmd("set tabstop=4")
+vim.cmd("set shiftwidth=4")
+vim.cmd("set expandtab")
+
+
+
+-- Open CHADtree on startup
+vim.cmd("CHADopen")
+
+--require("config.coc")
+
+
+

@@ -1,0 +1,4 @@
+Lua:
+<pkg-mgr install> lua-language-server
+Python: 
+pip install "python-lsp-server[all]"

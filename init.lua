@@ -68,8 +68,10 @@ vim.cmd("set expandtab")
 
 
 
--- Open CHADtree on startup
-vim.cmd("CHADopen")
+-- Open CHADtree on startup if nvim wasn't opened with a file
+if next(vim.fn.argv()) == nil then
+    vim.cmd("CHADopen")
+end
 
 --require("config.coc")
 

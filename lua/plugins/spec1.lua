@@ -30,7 +30,20 @@ return {
         lazy = false,
         build = ':TSUpdate'
     },
-    {"hiphish/rainbow-delimiters.nvim"},
+    {
+        "hiphish/rainbow-delimiters.nvim",
+        config = function ()
+            local g = vim.g
+            g.rainbow_delimiters = {
+                highlight = {
+                    'RainbowDelimiterYellow',
+                    'RainbowDelimiterRed',
+                    'RainbowDelimiterBlue',
+                },
+            }
+        end
+
+    },
     {"mfussenegger/nvim-dap"},
     {"rcarriga/nvim-dap-ui"},
     {"neoclide/coc.nvim", branch = 'release', enabled =false},

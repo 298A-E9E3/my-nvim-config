@@ -8,6 +8,7 @@ return {
             enable_on = {
                 "html",
                 "htmldjango",
+                "jinja2",
                 "tsx",
                 "jsx",
                 "erb",

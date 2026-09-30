@@ -1,6 +1,5 @@
 require("config.lazy")
 require("config.keymap")
-require("config.lsp")
 -- nvim-tree
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1

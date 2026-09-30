@@ -1,6 +1,6 @@
 require("config.lazy")
 require("config.keymap")
-
+require("config.lsp")
 -- nvim-tree
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
@@ -17,60 +17,29 @@ vim.opt.termguicolors = true
 
 -- vscode
 vim.o.background = 'dark'
-local c = require('vscode.colors').get_colors()
-require('vscode').setup({
-    -- Alternatively set style in setup
-    -- style = 'light'
-
-    -- Enable transparent background
-    transparent = true,
-
-    -- Enable italic comment
-    italic_comments = true,
-
-    -- Enable italic inlay type hints
-    italic_inlayhints = true,
-
-    -- Underline `@markup.link.*` variants
-    underline_links = true,
-
-    -- Disable nvim-tree background color
-    disable_nvimtree_bg = true,
-
-    -- Apply theme colors to terminal
-    terminal_colors = true,
-
-    -- Override colors (see ./lua/vscode/colors.lua)
-    color_overrides = {
-        vscLineNumber = '#FFFFFF',
-    },
-
-    -- Override highlight groups (see ./lua/vscode/theme.lua)
-    group_overrides = {
-        -- this supports the same val table as vim.api.nvim_set_hl
-        -- use colors from this colorscheme by requiring vscode.colors!
-        Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
-    }
-})
 -- require('vscode').load()
 
 -- load the theme without affecting devicon colors.
-vim.cmd.colorscheme "vscode"
+vim.cmd.colorscheme "tokyonight"
 
-require('lualine').setup {
-	extensions = {"nvim-tree", "chadtree"}
-}
 
 -- Set tab size
 vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set expandtab")
 
-
+-- Define custom filetypes
+vim.filetype.add({
+    extension = {
+        jinja2 = "jinja2",
+        j2 = "jinja2",
+    }
+})
 
 -- Open CHADtree on startup if nvim wasn't opened with a file
-if next(vim.fn.argv()) == nil then
-    vim.cmd("CHADopen")
+local fileArg = next(vim.fn.argv())
+if fileArg == nil or vim.uv.fs_stat(fileArg) then
+    vim.cmd("Neotree")
 end
 
 --require("config.coc")

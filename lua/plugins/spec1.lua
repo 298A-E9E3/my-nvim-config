@@ -1,16 +1,41 @@
 return {
-    --{"neovim/nvim-lspconfig"},
-    --{"nvim-tree/nvim-tree.lua"},
-    --{"nvim-tree/nvim-web-devicons"},
-    {"Mofiqul/vscode.nvim"},
+    { 
+        'nvim-tree/nvim-web-devicons',
+        opts = {
+            override = {
+                jinja2 = {
+                    icon = "",
+                    color = "#7E0C1B",
+                    cterm_color = "52",
+                    name = "Jinja2"
+                }
+            }
+
+        }
+    },
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            -- "nvim-tree/nvim-web-devicons", -- optional, but recommended
+        },
+        lazy = false, -- neo-tree will lazily load itself
+    },
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' }
+        opts = {
+            extensions = {"nvim-tree", "chadtree", "neo-tree"},
+            options = {
+                theme = 'tokyonight'
+            }
+        }
     },
     {
         "ms-jpq/chadtree",
         branch = "chad",
-        build = "python3 -m chadtree deps"
+        build = "python3 -m chadtree deps",
     },
     {
         "jake-stewart/multicursor.nvim",
@@ -24,6 +49,15 @@ return {
             }
         }
 
+    },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {
+            ensure_installed = {
+                "html",
+                "vtsls",
+            },
+        },
     },
     {
         'nvim-treesitter/nvim-treesitter',
@@ -59,7 +93,8 @@ return {
                 --ruby = {'rubocop=', 'ruby'},
                 lua = {'lua_language_server'},
                 python = {'ty'},
-                jinja2 = {'djlint'}
+                -- javascript = {'quick_lint_js'}
+
             }
 
             g.ale_completion_enabled = 1
@@ -74,7 +109,20 @@ return {
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {},
-    }
+    },
+    {
+        "numToStr/Comment.nvim"
+    },
+    {"michaeljsmith/vim-indent-object"},
+    {
+        "AndrewRadev/inline_edit.vim",
+        lazy = true,
+        cmd = { "InlineEdit" },
+        keys = {
+            { "<leader>cI", "<cmd>InlineEdit<cr>", desc = "Inline Edit (JS inside <script> html)" },
+        },
+        config = true,
+    },
     --{"mfussenegger/nvim-jdtls"},
 
 }

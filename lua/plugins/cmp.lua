@@ -37,7 +37,7 @@ return {
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.abort(),
                     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-                    
+
                 }),
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
@@ -81,7 +81,20 @@ return {
                 }),
                 matching = { disallow_symbol_nonprefix_matching = false }
             })
+            -- Set up lspconfig.
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+            -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+            vim.lsp.config('html', {
+                capabilities = capabilities
+            })
+            vim.lsp.enable('html')
 
+            vim.lsp.config('vtsls', {
+                capabilities = capabilities,
+                filetypes = {"html", "jinja2"}
+
+            })
+            vim.lsp.enable('vtsls')
         end
     },
 

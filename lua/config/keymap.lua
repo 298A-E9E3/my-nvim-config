@@ -29,13 +29,13 @@ keymap.set("n", "<leader>l", "<Cmd>wincmd l<CR>", { desc = "Move cursor to right
 
 -- My personal binds
 
--- Open CHADtree
-keymap.set("n", "<leader>ft", "<cmd>CHADopen<CR>", { desc = "Open CHADtree" })
+-- Open Neotree
+keymap.set("n", "<leader>ft", "<cmd>Neotree<CR>", { desc = "Open Neotree" })
 -- Select all
 keymap.set("n", "<leader>sa", "ggVG", { desc = "Select entire file" })
 -- Save buffer
-keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save Buffer"})
-keymap.set("i", "<C-s>", "<cmd>w<CR>", { desc = "Save Buffer"})
+keymap.set({"n", "i"}, "<C-s>", "<cmd>w<CR>", { desc = "Save Buffer"})
+
 
 
 -- Enable Autocomplete

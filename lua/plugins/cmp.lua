@@ -84,18 +84,29 @@ return {
             -- Set up lspconfig.
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+            vim.treesitter.language.register('html', { 'jinja2', 'j2' })
             vim.lsp.config('html', {
                 capabilities = capabilities,
-                filetypes = {"html", "jinja2"}
+                filetypes = {"html", "jinja2"},
+                -- init_options = {
+                --     configurationSection = { "html", "css", "javascript", "jinja2" },
+                --     embeddedLanguages = {
+                --         css = true,
+                --         javascript = true
+                --     },
+                --     provideFormatter = true
+                -- }
             })
             vim.lsp.enable('html')
 
             vim.lsp.config('vtsls', {
                 capabilities = capabilities,
-                -- filetypes = {"html", "jinja2"}
+                filetypes = {"html", "jinja2"},
+
+
 
             })
-            vim.lsp.enable('vtsls')
+            -- vim.lsp.enable('vtsls')
         end
     },
 

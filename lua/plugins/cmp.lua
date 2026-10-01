@@ -92,7 +92,7 @@ return {
 
             vim.lsp.config('vtsls', {
                 capabilities = capabilities,
-                filetypes = {"html", "jinja2"}
+                -- filetypes = {"html", "jinja2"}
 
             })
             vim.lsp.enable('vtsls')

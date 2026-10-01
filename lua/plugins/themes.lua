@@ -1,12 +1,14 @@
 return {
     {
         "folke/tokyonight.nvim",
+        priority = 1000,
         opts = {
             style = "night",
         }
     },
     {
         "Mofiqul/vscode.nvim",
+        enabled = false,
         opts={
             -- Alternatively set style in setup
             -- style = 'light'

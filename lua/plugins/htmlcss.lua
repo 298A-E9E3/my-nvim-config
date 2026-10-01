@@ -1,11 +1,4 @@
-return {
-    {
-        "Jezda1337/nvim-html-css",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
-        opts = {
-            enable_on = {
+local enable_on = {
                 "html",
                 "htmldjango",
                 "jinja2",
@@ -18,7 +11,17 @@ return {
                 "php",
                 "templ",
                 "astro",
-            },
+            }
+return {
+    {
+        "Jezda1337/nvim-html-css",
+        lazy = true,
+        ft = enable_on,
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        opts = {
+            enable_on = enable_on,
             handlers = {
                 definition = {
                     bind = "gd"

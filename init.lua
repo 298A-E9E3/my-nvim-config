@@ -1,3 +1,11 @@
+-- Define custom filetypes
+vim.filetype.add({
+    extension = {
+        jinja2 = "jinja2",
+        j2 = "jinja2",
+    }
+})
+
 require("config.lazy")
 require("config.keymap")
 -- nvim-tree
@@ -26,14 +34,6 @@ vim.cmd.colorscheme "tokyonight"
 vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set expandtab")
-
--- Define custom filetypes
-vim.filetype.add({
-    extension = {
-        jinja2 = "jinja2",
-        j2 = "jinja2",
-    }
-})
 
 -- Open CHADtree on startup if nvim wasn't opened with a file
 local fileArg = next(vim.fn.argv())

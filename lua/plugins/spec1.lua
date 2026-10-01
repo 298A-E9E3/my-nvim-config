@@ -36,6 +36,7 @@ return {
         "ms-jpq/chadtree",
         branch = "chad",
         build = "python3 -m chadtree deps",
+        enabled = false
     },
     {
         "jake-stewart/multicursor.nvim",
@@ -109,6 +110,8 @@ return {
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {},
+        lazy = false,
+        ft = {"markdown", "md"}
     },
     {
         "numToStr/Comment.nvim"

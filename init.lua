@@ -1,8 +1,8 @@
 -- Define custom filetypes
 vim.filetype.add({
     extension = {
-        jinja2 = "jinja2",
-        j2 = "jinja2",
+        jinja2 = "htmldjango",
+        j2 = "htmldjango",
     }
 })
 
@@ -13,6 +13,9 @@ require("config.keymap")
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+
+
 
 -- basedpyright
 vim.lsp.enable("basedpyright")

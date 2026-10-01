@@ -43,24 +43,7 @@ return {
         "jake-stewart/multicursor.nvim",
         branch = "1.0",
     },
-    {
-        "mason-org/mason.nvim",
-        opts = {
-            registries = {
-                "github:mason-org/mason-registry"
-            }
-        }
-
-    },
-    {
-        "mason-org/mason-lspconfig.nvim",
-        opts = {
-            ensure_installed = {
-                "html",
-                "vtsls",
-            },
-        },
-    },
+    
     {
         'nvim-treesitter/nvim-treesitter',
         lazy = false,
@@ -83,26 +66,7 @@ return {
     {"mfussenegger/nvim-dap"},
     {"rcarriga/nvim-dap-ui"},
     {"neoclide/coc.nvim", branch = 'release', enabled =false},
-    {
-        'dense-analysis/ale',
-        config = function()
-            -- Configuration goes here.
-            local g = vim.g
-
-            g.ale_ruby_rubocop_auto_correct_all = 1
-
-            g.ale_linters = {
-                --ruby = {'rubocop=', 'ruby'},
-                lua = {'lua_language_server'},
-                python = {'ty'},
-                -- javascript = {'quick_lint_js'}
-
-            }
-
-            g.ale_completion_enabled = 1
-
-        end
-    },
+   
     {
         'MeanderingProgrammer/render-markdown.nvim',
         dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },            -- if you use the mini.nvim suite
@@ -125,7 +89,7 @@ return {
         keys = {
             { "<leader>cI", "<cmd>InlineEdit<cr>", desc = "Inline Edit (JS inside <script> html)" },
         },
-        config = true,
+        -- config = true,
     },
     {
 

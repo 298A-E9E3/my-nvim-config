@@ -7,6 +7,7 @@ vim.filetype.add({
 })
 
 require("config.lazy")
+require("config.autopair")
 require("config.keymap")
 -- nvim-tree
 -- disable netrw at the very start of your init.lua

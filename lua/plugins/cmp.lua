@@ -1,12 +1,24 @@
 return {
-    {'neovim/nvim-lspconfig'},
-    {'hrsh7th/cmp-nvim-lsp'},
-    {'hrsh7th/cmp-buffer'},
-    {'hrsh7th/cmp-path'},
-    {'hrsh7th/cmp-cmdline'},
-    {'hrsh7th/cmp-calc'},
+    {'neovim/nvim-lspconfig', module=true},
+    {'hrsh7th/cmp-nvim-lsp', module=true},
+    {'hrsh7th/cmp-buffer', module=true},
+    {'hrsh7th/cmp-path', module=true},
+    {'hrsh7th/cmp-cmdline', module=true},
+    {'hrsh7th/cmp-calc', module=true},
+
+
     {
         'hrsh7th/nvim-cmp',
+        priority = 51,
+        requirements = {
+            'neovim/nvim-lspconfig',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            'hrsh7th/cmp-calc',
+
+        },
         config = function()
             local cmp = require'cmp'
 
@@ -89,27 +101,28 @@ return {
                 capabilities = capabilities,
                 filetypes = {"html", "jinja2"},
                 -- init_options = {
-                --     configurationSection = { "html", "css", "javascript", "jinja2" },
-                --     embeddedLanguages = {
-                --         css = true,
-                --         javascript = true
-                --     },
-                --     provideFormatter = true
-                -- }
-            })
-            vim.lsp.enable('html')
+                    --     configurationSection = { "html", "css", "javascript", "jinja2" },
+                    --     embeddedLanguages = {
+                        --         css = true,
+                        --         javascript = true
+                        --     },
+                        --     provideFormatter = true
+                        -- }
+                    })
 
-            vim.lsp.config('vtsls', {
-                capabilities = capabilities,
-                filetypes = {"html", "jinja2"},
+                    vim.lsp.enable('html')
 
-
-
-            })
-            -- vim.lsp.enable('vtsls')
-        end
-    },
+                    vim.lsp.config('vtsls', {
+                        capabilities = capabilities,
+                        filetypes = {"html", "jinja2"},
 
 
 
-}
+                    })
+                    -- vim.lsp.enable('vtsls')
+                end
+            },
+
+
+
+        }

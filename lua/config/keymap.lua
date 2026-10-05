@@ -44,7 +44,11 @@ vim.keymap.set('n', '<leader>dj', function()
     end 
 end, {noremap = true})
 
+-- Insert Register Clipboard
+keymap.set("n", "<leader>irc", "\"+", { desc = "Insert Register Clipboard" })
 
+-- Insert Register Null 
+keymap.set("n", "<leader>irn", "\"+", { desc = "Insert Register Null" })
 
 -- Enable Autocomplete
 vim.api.nvim_create_autocmd('LspAttach', {

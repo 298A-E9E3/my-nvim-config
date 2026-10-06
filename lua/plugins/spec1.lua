@@ -43,7 +43,7 @@ return {
         "jake-stewart/multicursor.nvim",
         branch = "1.0",
     },
-    
+
     {
         'nvim-treesitter/nvim-treesitter',
         lazy = false,
@@ -66,7 +66,7 @@ return {
     {"mfussenegger/nvim-dap"},
     {"rcarriga/nvim-dap-ui"},
     {"neoclide/coc.nvim", branch = 'release', enabled =false},
-   
+
     {
         'MeanderingProgrammer/render-markdown.nvim',
         dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },            -- if you use the mini.nvim suite
@@ -107,7 +107,22 @@ return {
                 enable_close_on_slash = false -- Auto close on trailing </
             },
         }
+    },
+    {
+        "nat-418/boole.nvim",
+        opts = {
+            mappings = {
+                increment = '<C-a>',
+                decrement = '<C-x>'
+            },
+            -- User defined loops
+            additions = {
+            },
+            allow_caps_additions = {
+                {'enable', 'disable'},
+                {'true', 'false'}
+            }
+        }
     }
-    --{"mfussenegger/nvim-jdtls"},
 
 }

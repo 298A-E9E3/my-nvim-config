@@ -110,6 +110,7 @@ return {
     },
     {
         "nat-418/boole.nvim",
+        enabled=false,
         opts = {
             mappings = {
                 increment = '<C-a>',
@@ -117,12 +118,75 @@ return {
             },
             -- User defined loops
             additions = {
+                {"\"","'"}
             },
             allow_caps_additions = {
                 {'enable', 'disable'},
                 {'true', 'false'}
             }
         }
-    }
+    },
+    {
+        "monaqa/dial.nvim",
+        opts = {
+
+        },
+        config = function ()
+            vim.keymap.set("n", "<C-a>", function()
+                require("dial.map").manipulate("increment", "normal")
+            end)
+            vim.keymap.set("n", "<C-x>", function()
+                require("dial.map").manipulate("decrement", "normal")
+            end)
+            vim.keymap.set("n", "g<C-a>", function()
+                require("dial.map").manipulate("increment", "gnormal")
+            end)
+            vim.keymap.set("n", "g<C-x>", function()
+                require("dial.map").manipulate("decrement", "gnormal")
+            end)
+            vim.keymap.set("x", "<C-a>", function()
+                require("dial.map").manipulate("increment", "visual")
+            end)
+            vim.keymap.set("x", "<C-x>", function()
+                require("dial.map").manipulate("decrement", "visual")
+            end)
+            vim.keymap.set("x", "g<C-a>", function()
+                require("dial.map").manipulate("increment", "gvisual")
+            end)
+            vim.keymap.set("x", "g<C-x>", function()
+                require("dial.map").manipulate("decrement", "gvisual")
+            end)
+
+            -- Custom groups
+            local augend = require("dial.augend")
+            require("dial.config").augends:register_group{
+                default = {
+                    augend.integer.alias.decimal,
+                    augend.integer.alias.hex,
+                    augend.date.alias["%Y/%m/%d"],
+                    -- hex colors (e.g. #1A1A1A, #EEFEFE, etc.)
+                    augend.hexcolor.new{
+                        case = "prefer_upper"
+                    },
+                    augend.constant.new{
+                        elements = {"true", "false"},
+                        word = true,
+                        cyclic = true,
+                    },
+                    augend.constant.new{
+                        elements = {"True", "False"},
+                        word = true,
+                        cyclic = true,
+                    },
+                },
+            }
+        end
+    },
+    {
+        "uga-rosa/ccc.nvim",
+        opts = {
+
+        }
+    },
 
 }

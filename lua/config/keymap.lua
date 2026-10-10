@@ -36,12 +36,12 @@ keymap.set("n", "<leader>sa", "ggVG", { desc = "Select entire file" })
 -- Save buffer
 keymap.set({"n", "i"}, "<C-s>", "<cmd>w<CR>", { desc = "Save Buffer"})
 -- Toggle between htmldjango and html
-vim.keymap.set('n', '<leader>dj', function() 
+vim.keymap.set('n', '<leader>dj', function()
     if vim.bo.filetype == "html" then
-        vim.bo.filetype = "htmldjango" 
+        vim.bo.filetype = "htmldjango"
     elseif vim.bo.filetype == "htmldjango" then
         vim.bo.filetype = "html"
-    end 
+    end
 end, {noremap = true})
 
 -- Insert Register Clipboard
@@ -50,13 +50,6 @@ keymap.set("n", "<leader>irc", "\"+", { desc = "Insert Register Clipboard" })
 -- Insert Register Null 
 keymap.set("n", "<leader>irn", "\"+", { desc = "Insert Register Null" })
 
--- Enable Autocomplete
-vim.api.nvim_create_autocmd('LspAttach', {
-    callback = function(args)
-        --vim.lsp.completion.enable(true, args.data.client_id, args.buf, { autotrigger = true })
-        --keymap.set('i', '<C-Space>', function()
-            --vim.lsp.completion.get()
-            --end, { buffer = args.buf })
+-- Open Ccc picker
+keymap.set("n", "<leader><C-p>", "<cmd>CccPick<CR>", { desc = "Open Ccc Picker" })
 
-        end,
-    })

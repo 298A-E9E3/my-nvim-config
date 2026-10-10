@@ -4,6 +4,6 @@ local npairs = require('nvim-autopairs')
 npairs.add_rule(Rule("(",")"))
 npairs.add_rule(Rule("{","}"))
 npairs.add_rule(Rule("[","]"))
-npairs.add_rule(Rule("'","'"))
+-- npairs.add_rule(Rule("'","'"))
 npairs.add_rule(Rule("\"","\""))
 

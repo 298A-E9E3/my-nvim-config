@@ -107,7 +107,7 @@ return {
 
             vim.lsp.config('vtsls', {
                 capabilities = capabilities,
-                filetypes = {"html", "jinja2"},
+                filetypes = {"html", "jinja2", "javascript"},
             })
 
             vim.lsp.enable('vtsls')
@@ -189,7 +189,7 @@ return {
             },
             {
                 "folke/lazydev.nvim",
-                enabled = false,
+                enabled = true,
                 ft = "lua", -- only load on lua files
                 opts = {
                     library = {
@@ -218,7 +218,4 @@ return {
                     },
                 },
             },
-
-            
-
         }

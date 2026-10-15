@@ -45,4 +45,13 @@ return {
                 -- Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
             }
         }},
+        {
+            "sphamba/smear-cursor.nvim",
+            opts = {},
+        },
+        {
+            "karb94/neoscroll.nvim",
+            cond = false,
+            opts = {},
+        }
     }

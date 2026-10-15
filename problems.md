@@ -2,4 +2,4 @@
 * Lazydev
 
 ## Misc problems:
-* Spellcheck turns on and can't be turned off
+* Something tries to start up jdtls despite it not being installed

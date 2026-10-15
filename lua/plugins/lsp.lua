@@ -5,6 +5,8 @@ return {
     {'hrsh7th/cmp-path', module=true},
     {'hrsh7th/cmp-cmdline', module=true},
     {'hrsh7th/cmp-calc', module=true},
+    {'onsails/lspkind.nvim'},
+
 
 
     {
@@ -21,6 +23,7 @@ return {
         },
         config = function()
             local cmp = require'cmp'
+            local lspkind = require('lspkind')
 
             cmp.setup({
                 snippet = {
@@ -62,7 +65,28 @@ return {
                     -- { name = 'snippy' }, -- For snippy users.
                 }, {
                     { name = 'buffer' },
-                })
+                }),
+                formatting = {
+                    fields = { 'abbr', 'icon', 'kind', 'menu' },
+                    format = lspkind.cmp_format({
+                        maxwidth = {
+                            -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                            -- can also be a function to dynamically calculate max width such as
+                            -- menu = function() return math.floor(0.45 * vim.o.columns) end,
+                            menu = 50, -- leading text (labelDetails)
+                            abbr = 50, -- actual suggestion item
+                        },
+                        ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                        show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+
+                        -- The function below will be called before any actual modifications from lspkind
+                        -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+                        before = function (entry, vim_item)
+                            -- ...
+                            return vim_item
+                        end
+                    })
+                }
             })
 
             -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
@@ -112,57 +136,65 @@ return {
 
             vim.lsp.enable('vtsls')
 
-            vim.lsp.config('lua_ls', {
-                on_init = function(client)
-                    if client.workspace_folders then
-                        local path = client.workspace_folders[1].name
-                        if
-                            path ~= vim.fn.stdpath('config')
-                            and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
-                            then
-                                return
-                            end
-                        end
 
-                        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-                            runtime = {
-                                -- Tell the language server which version of Lua you're using (most
-                                -- likely LuaJIT in the case of Neovim)
-                                version = 'LuaJIT',
-                                -- Tell the language server how to find Lua modules same way as Neovim
-                                -- (see `:h lua-module-load`)
-                                path = {
-                                    'lua/?.lua',
-                                    'lua/?/init.lua',
-                                },
+            vim.lsp.config('clangd', {
+                capabilities = capabilities,
+            })
 
-                            },
-                            -- Make the server aware of Neovim runtime files
-                            workspace = {
-                                checkThirdParty = false,
-                                library = {
-                                    vim.env.VIMRUNTIME,
-                                    -- For LSP Settings Type Annotations: https://github.com/neovim/nvim-lspconfig#lsp-settings-type-annotations
-                                    vim.api.nvim_get_runtime_file("lua/lspconfig", false)[1],
-                                },
-                                -- Or pull in all of 'runtimepath'.
-                                -- NOTE: this is a lot slower and will cause issues when working on
-                                -- your own configuration.
-                                -- See https://github.com/neovim/nvim-lspconfig/issues/3189
-                                -- library = vim.api.nvim_get_runtime_file('', true),
-                            },
-                        })
-                    end,
-                    settings = {
-                        Lua = {},
-                    },
-                })
+            vim.lsp.enable('clangd')
+            -- vim.lsp.config('lua_ls', {capabilities = capabilities} 
+            -- {
+            --     on_init = function(client)
+            --         if client.workspace_folders then
+            --             local path = client.workspace_folders[1].name
+            --             if
+            --                 path ~= vim.fn.stdpath('config')
+            --                 and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+            --                 then
+            --                     return
+            --                 end
+            --             end
+            --
+            --             client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+            --                 runtime = {
+            --                     -- Tell the language server which version of Lua you're using (most
+            --                     -- likely LuaJIT in the case of Neovim)
+            --                     version = 'LuaJIT',
+            --                     -- Tell the language server how to find Lua modules same way as Neovim
+            --                     -- (see `:h lua-module-load`)
+            --                     path = {
+            --                         'lua/?.lua',
+            --                         'lua/?/init.lua',
+            --                     },
+            --
+            --                 },
+            --                 -- Make the server aware of Neovim runtime files
+            --                 workspace = {
+            --                     checkThirdParty = false,
+            --                     library = {
+            --                         vim.env.VIMRUNTIME,
+            --                         -- For LSP Settings Type Annotations: https://github.com/neovim/nvim-lspconfig#lsp-settings-type-annotations
+            --                         vim.api.nvim_get_runtime_file("lua/lspconfig", false)[1],
+            --                     },
+            --                     -- Or pull in all of 'runtimepath'.
+            --                     -- NOTE: this is a lot slower and will cause issues when working on
+            --                     -- your own configuration.
+            --                     -- See https://github.com/neovim/nvim-lspconfig/issues/3189
+            --                     -- library = vim.api.nvim_get_runtime_file('', true),
+            --                 },
+            --             })
+            --         end,
+            --         settings = {
+            --             Lua = {},
+            --         },
+            --     }
+                -- )
 
                 -- vim.lsp.config('lua_ls', {
                     --     capabilities = capabilities,
                     -- })
 
-                    vim.lsp.enable('lua_ls')
+                    -- vim.lsp.enable('lua_ls')
 
                 end
             },

@@ -40,14 +40,22 @@ vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set expandtab")
 
+-- Enable Line Numbers
+vim.opt.number = true;
+vim.opt.relativenumber = true;
+
 -- Open tree on startup if nvim wasn't opened with a file
 local fileArg = next(vim.fn.argv())
 if fileArg == nil or vim.uv.fs_stat(fileArg) then
     vim.cmd("Neotree")
 end
 
-
---require("config.coc")
-
-
+vim.diagnostic.config({
+  virtual_text = {
+    source = "true", -- or true to always show the source
+  },
+  float = {
+    source = "true", -- or true to always show the source
+  },
+})
 

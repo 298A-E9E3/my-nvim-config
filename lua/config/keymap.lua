@@ -30,7 +30,7 @@ keymap.set("n", "<leader>l", "<Cmd>wincmd l<CR>", { desc = "Move cursor to right
 -- My personal binds
 
 -- Open Neotree
-keymap.set("n", "<leader>ft", "<cmd>Neotree<CR>", { desc = "Open Neotree" })
+keymap.set("n", "<leader>ft", "<cmd>Neotree toggle reveal<CR>", { desc = "Open Neotree" })
 -- Select all
 keymap.set("n", "<leader>sa", "ggVG", { desc = "Select entire file" })
 -- Save buffer
